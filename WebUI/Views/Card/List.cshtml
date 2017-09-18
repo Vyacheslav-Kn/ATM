@@ -1,0 +1,10 @@
+﻿
+    @{
+        ViewBag.Title = "ATM";
+    }
+
+    <h2>Hellow World! You are on www.ATM.com </h2>
+@if (TempData["result"] != null)
+{
+    <div class="Message">@TempData["result"]</div>
+}

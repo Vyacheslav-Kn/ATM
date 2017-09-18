@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Services";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<ul>
+    <li>
+        Mobile connection
+        <ul>
+            <li>@Html.ActionLink("Velcom (00123)", "Nav1_eripmodel", "Card", new { org_erip = "00123" }, null)</li>
+            <li>@Html.ActionLink("Life (00234)", "Nav1_eripmodel", "Card", new { org_erip = "00234" }, null)</li>
+            <li>@Html.ActionLink("MTS (00345)", "Nav1_eripmodel", "Card", new { org_erip = "00345" }, null)</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>
+        Education
+        <ul>
+            <li>@Html.ActionLink("RT_rigz (00456)", "Nav1_eripmodel", "Card", new { org_erip = "00456" }, null)</li>
+            <li>@Html.ActionLink("CT_rigz (00567)", "Nav1_eripmodel", "Card", new { org_erip = "00567" }, null)</li>
+        </ul>
+    </li>
+</ul>
+
+<ul>
+    <li>
+        Enternet and television
+        <ul>
+            <li>@Html.ActionLink("Atlant telecom (00678)", "Nav1_eripmodel", "Card", new { org_erip = "00678" }, null)</li>
+            <li>@Html.ActionLink("Voka (00789)", "Nav1_eripmodel", "Card", new { org_erip = "00789" }, null)</li>
+        </ul>
+    </li>
+</ul>
+<p></p>
+@Html.ActionLink("Choosing new Erip operation", "Nav1_erip_find", "Card")

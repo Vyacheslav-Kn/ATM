@@ -1,0 +1,23 @@
+﻿@model ATM.Domain.Entities.Card
+@{
+    ViewBag.Title = "Nav2_success";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Information:</h2>
+@Html.Label("Card number: ")
+@Html.DisplayFor(model => model.Cardname)
+<p></p>
+@Html.Label("Start: ")
+@Html.DisplayFor(model => model.Start)
+<p></p>
+@Html.Label("Finish: ")
+@Html.DisplayFor(model => model.Finish)
+<p></p>
+@Html.Label("Card cash: ")
+@Html.DisplayFor(model => model.Cash)
+
+<h2>Card story(Last 10 operations)</h2>
+@Html.DisplayFor(model => model.Queue)
+<p></p>
+@Html.ActionLink("www.ATM.com","List","Card")

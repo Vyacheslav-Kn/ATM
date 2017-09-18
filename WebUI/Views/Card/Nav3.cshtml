@@ -1,0 +1,15 @@
+﻿@model WebUI.Models.Rollover
+@{
+    ViewBag.Title = "Nav3";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h1>Send operation</h1>
+<p>Please fill fields:</p>
+@using (Html.BeginForm("Nav3", "Card"))
+{
+    @Html.ValidationSummary(true)
+    @Html.EditorForModel()
+    <p><input type="submit" value="Send" /></p>
+}
+

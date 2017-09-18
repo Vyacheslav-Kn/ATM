@@ -1,0 +1,30 @@
+﻿@model IEnumerable<ATM.Domain.Entities.Card>
+@{
+    ViewBag.Title = "Admin: Cards";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<table class="Grid">
+    <tr>
+        <th>ID</th>
+        <th>CardName</th>
+        <th>Cash</th>
+        <th>Actions</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CardId</td>
+            <td>@Html.ActionLink(@item.Cardname.ToString(), "Edit", new { item.CardId})</td>
+            <td>@item.Cash.ToString() rubles</td>
+            <td>
+                @using (Html.BeginForm("Delete", "Admin"))
+                {
+                    @Html.Hidden("CardId", item.CardId)
+                    <input type="submit" value="Delete" />
+                }
+            </td>
+        </tr>
+    }
+</table>
+<p>@Html.ActionLink("Add a new card", "Create")</p>
+<p>@Html.ActionLink("www.ATM.com", "List", "Card")</p> 

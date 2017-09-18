@@ -1,0 +1,26 @@
+﻿@model WebUI.Models.EripModel
+@{
+    ViewBag.Title = "Nav1_erip";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Please, input neccessary fields: </h2>
+@using (Html.BeginForm("Nav1_erip", "Card"))
+{ 
+@Html.Label("Organization erip number: ")
+@Html.TextBoxFor(model => model.Organization_erip_number)
+<p></p>
+@Html.Label("Organization name: ")
+@Html.DisplayFor(model => model.Organization_name)
+<p></p>
+@Html.Label("Sender's card number: ")
+@Html.TextBoxFor(model => model.Sender_cart_number)
+<p></p>
+@Html.Label("Sender's card password: ")
+@Html.PasswordFor(model => model.Sender_cart_password)
+<p></p>
+@Html.Label("Cash: ")
+@Html.TextBoxFor(model => model.Cash)
+<p></p>
+<p><input type="submit" value="Send" /></p>
+}
