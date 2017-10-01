@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using ATM.Domain.Entities;
 
 namespace ATM.Domain.Abstract
 {
-   public interface ICardRepository
+    public interface ICardRepository
     {
          IQueryable<Card> Cards { get; }
         // интерфейс IQueryable<T> получить последовательность объектов Product и не требует указаний на то, как и где хранятся данные или 

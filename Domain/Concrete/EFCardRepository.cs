@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using ATM.Domain.Abstract;
 using ATM.Domain.Entities;
 
 namespace ATM.Domain.Concrete
 {
-   public class EFCardRepository: ICardRepository
+    public class EFCardRepository: ICardRepository
     {
         private CardDbContext context = new CardDbContext();
         public IQueryable<Card> Cards
@@ -18,7 +14,6 @@ namespace ATM.Domain.Concrete
 
         public void SaveCard(Card Card)
         {
-            int n = 0;
             if (Card.CardId == 0)
             {
                 context.Cards.Add(Card);
@@ -32,7 +27,7 @@ namespace ATM.Domain.Concrete
                     dbEntry.Start = Card.Start;
                     dbEntry.Finish = Card.Finish;
                     dbEntry.Cash = Card.Cash;
-                   dbEntry.Queue = Card.Queue; 
+                    dbEntry.Queue = Card.Queue; 
                     dbEntry.Pin = Card.Pin;
                 }
             }

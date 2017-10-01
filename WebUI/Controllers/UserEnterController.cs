@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
 using ATM.WebUI.Models;
@@ -19,33 +15,29 @@ namespace WebUI.Controllers
             this.repository = cardRepository;
         }
 
-        public ViewResult Login(int n = 0)
+        public ViewResult Login()
         {
-            TempData["choice"] = n;
-            return View(); }
+            return View();
+        }
 
-        private bool Authenticate(int username,string userpin)
-        {            
+        private bool Authenticate(int username, string userpin)
+        {
             Card card = repository.Cards.FirstOrDefault(p => p.Cardname == username);
-            if (card.Cardname == username && card.Pin == userpin) { return true; } 
+            if (card.Cardname == username && card.Pin == userpin) { return true; }
             else return false;
         }
 
         [HttpPost]
-       // [ValidateAntiForgeryToken]
+        // [ValidateAntiForgeryToken]
         public ActionResult Login(LoginUserModel model)
         {
             if (ModelState.IsValid)
             {
-                if (Authenticate(model.UserName,model.UserPin))
+                if (Authenticate(model.UserName, model.UserPin))
                 {
                     FormsAuthentication.SetAuthCookie(model.UserName.ToString(), false);
                     Card card1 = repository.Cards.FirstOrDefault(p => p.Cardname == model.UserName);
-                    switch (Convert.ToInt32(TempData["choice"]))
-                    {
-                        case 0: { return Redirect(Url.Action("List", "Card")); }
-                        case 1: { return View("Nav2_success", card1); }
-                    }
+                    return View("Nav2_success", card1);
                 }
                 else
                 {
@@ -56,7 +48,6 @@ namespace WebUI.Controllers
             {
                 return View();
             }
-            return View();
         }
 
     }

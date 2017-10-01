@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace ATM.Domain.Entities
 {
     public class Erip
     {
         [HiddenInput(DisplayValue = false)]
-        public int Id { get; set; }
-        public string Eripnumber { get; set; }
+        public int Id { get; set; } // уник-е значение в рамках SQl-таблицы
+        public string Eripnumber { get; set; } // уник-ый номер erip операции
         public string Eripinfo { get; set; }
     }
 }

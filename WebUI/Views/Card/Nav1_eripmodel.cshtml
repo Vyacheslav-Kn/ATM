@@ -8,7 +8,8 @@
 @using (Html.BeginForm("Nav1_erip", "Card"))
 { 
 @Html.Label("Organization erip number: ")
-@Html.TextBoxFor(model => model.Organization_erip_number)
+@Html.DisplayFor(model => model.Organization_erip_number)
+    TempData["Erip"] = Model.Organization_erip_number;
 <p></p>
 @Html.Label("Organization name: ")
 @Html.DisplayFor(model => model.Organization_name)
