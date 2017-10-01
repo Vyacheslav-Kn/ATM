@@ -62,7 +62,7 @@ namespace WebUI.Controllers
                     repository.SaveCard(check2); TempData["result"] = "Operation has been performed!";
                     return View("List");
                 }
-                if (check2.Queue != null)
+                else
                 {
                     int count = (check2.Queue.Length - check2.Queue.Replace(";", "").Length) / ";".Length; // кол-во вхождений
                     int[] numbers = new int[count]; int t = 0;
@@ -111,21 +111,69 @@ namespace WebUI.Controllers
         {
             return View(new Rollover());
         }
+
+        private void queue_check(Card card1, Rollover trans)
+        {
+            DateTime thisDate = DateTime.Now; string time = thisDate.ToString(@"MM\/dd\/yyyy HH:mm");
+            if (card1.Queue == null)
+            {
+                if (card1.Cardname == trans.SenderName) { card1.Queue = time + " Send " + trans.Cash + " rubles to card " + trans.ReceiverName + ";"; repository.SaveCard(card1); }
+                else { card1.Queue = time + " Get " + trans.Cash + " rubles from card " + trans.SenderName + ";"; repository.SaveCard(card1); }
+            }
+            else 
+            {
+                int count = (card1.Queue.Length - card1.Queue.Replace(";", "").Length) / ";".Length; // кол-во вхождений
+                int[] numbers = new int[count]; int t = 0;
+                Queue<string> info2 = new Queue<string>();
+                for (int i = 0; i < card1.Queue.Length; i++)
+                {
+                    if (card1.Queue[i].ToString() == ";")
+                    {
+                        numbers[t] = i; t++;
+                    }
+                }
+                int a1 = 0; int k = 0;
+                while (k != count)
+                {
+                    info2.Enqueue((card1.Queue.Substring(a1, numbers[k] - a1 + 1)));
+                    a1 = numbers[k] + 1; k++;
+                }
+
+                if (info2.Count >= 10)
+                {
+                    info2.Dequeue(); 
+                    if (card1.Cardname == trans.SenderName) { info2.Enqueue(time + " Send " + trans.Cash + " rubles to card " + trans.ReceiverName + ";"); }
+                    else { info2.Enqueue(time + " Get " + trans.Cash + " rubles from card " + trans.SenderName + ";"); }
+                    string test = null;
+                    foreach (string s in info2) { test = test + s + " "; }
+                    card1.Queue = test;
+                }
+                else
+                {
+                    if (card1.Cardname == trans.SenderName) { info2.Enqueue(time + " Send " + trans.Cash + " rubles to card " + trans.ReceiverName + ";"); }
+                    else { info2.Enqueue(time + " Get " + trans.Cash + " rubles from card " + trans.SenderName + ";"); }
+                    string test = null;
+                    foreach (string s in info2) { test = test + s + " "; }
+                    card1.Queue = test;
+                }
+                repository.SaveCard(card1);
+            }
+        }
+        
         [HttpPost]
         public ViewResult Nav3(Rollover trans)
         {
-            Card card1 = repository.Cards.FirstOrDefault(p => p.Cardname == trans.SenderName);
+            Card card1 = repository.Cards.FirstOrDefault(p => p.Cardname == trans.SenderName); Rollover t = trans;
             Card card2 = repository.Cards.FirstOrDefault(p => p.Cardname == trans.ReceiverName);
             if (card1.Pin == trans.UserPin && card1.Cash >= trans.Cash)
             {
-                card2.Cash = card2.Cash + trans.Cash; repository.SaveCard(card2);
-                card1.Cash = card1.Cash - trans.Cash; repository.SaveCard(card1);
+                card2.Cash = card2.Cash + trans.Cash; queue_check(card2, t);
+                card1.Cash = card1.Cash - trans.Cash; queue_check(card1, t);
                 TempData["result"] = "Operation has been performed!";
                 return View("List");
             }
             else { return View(); }
         }
-
     }
 }
 
