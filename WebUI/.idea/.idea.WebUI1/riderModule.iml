@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module type="RIDER_MODULE" version="4">
+  <component name="NewModuleRootManager">
+    <content url="file://$MODULE_DIR$/../.." />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/Microsoft.CSharp.Core.targets" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/Microsoft.CodeAnalysis.CSharp.dll" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/Microsoft.CodeAnalysis.dll" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/Microsoft.VisualBasic.Core.targets" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/System.Collections.Immutable.dll" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/System.Reflection.Metadata.dll" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/VBCSCompiler.exe" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/VBCSCompiler.exe.config" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/csc.exe" />
+    <content url="file://$MODULE_DIR$/../../../packages/Microsoft.Net.Compilers.1.0.0/tools/vbc.exe" />
+    <orderEntry type="sourceFolder" forTests="false" />
+  </component>
+</module>

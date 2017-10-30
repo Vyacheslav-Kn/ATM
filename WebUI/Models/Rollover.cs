@@ -4,14 +4,14 @@ namespace WebUI.Models
 {
     public class Rollover
     {
-        [Required]
+        [Required(ErrorMessage = "Input sender card number")]
         public int SenderName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Input sender card password")]
         [DataType(DataType.Password)]
         public string UserPin { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Input sender card cash")]
         public decimal Cash { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Input receiver card number")]
         public int ReceiverName { get; set; }
     }
 }

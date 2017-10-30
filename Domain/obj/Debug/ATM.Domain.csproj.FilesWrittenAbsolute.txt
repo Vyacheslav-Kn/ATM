@@ -1,0 +1,10 @@
+/media/vyacheslav/383GB/c#_projects/ATM/Domain/obj/Debug/.NETFramework,Version=v4.5.2.AssemblyAttribute.cs
+/media/vyacheslav/383GB/c#_projects/ATM/Domain/bin/Debug/Domain.dll.config
+/media/vyacheslav/383GB/c#_projects/ATM/Domain/bin/Debug/Domain.dll.mdb
+/media/vyacheslav/383GB/c#_projects/ATM/Domain/bin/Debug/Domain.pdb
+/media/vyacheslav/383GB/c#_projects/ATM/Domain/bin/Debug/Domain.dll
+/media/vyacheslav/383GB/c#_projects/ATM/Domain/obj/Debug/Domain.dll
+/media/vyacheslav/383GB/c#_projects/ATM/Domain/obj/Debug/Domain.dll.mdb
+/media/vyacheslav/383GB/c#_projects/ATM/Domain/obj/Debug/Domain.pdb
+/media/vyacheslav/383GB/c#_projects/ATM/Domain/bin/Debug/EntityFramework.dll
+/media/vyacheslav/383GB/c#_projects/ATM/Domain/bin/Debug/EntityFramework.SqlServer.dll

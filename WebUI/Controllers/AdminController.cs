@@ -1,12 +1,17 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
 using ATM.Domain.Abstract;
 using ATM.Domain.Entities;
 using ATM.WebUI.Models;
 using System.Web.Security;
+using ATM.Domain.Password;
+using System.Web;
+using System.Net;
 
 namespace WebUI.Controllers
 {
+    
     public class AdminController : Controller
     {
         private ICardRepository repository;
@@ -18,21 +23,37 @@ namespace WebUI.Controllers
         public ViewResult Login()
         { return View(); }
 
-        private bool Authenticate(string username, string password)
+        private bool Authenticate(string admin_name, string password)
         {
-            if (username == "slava" && password == "060299") { return true; }
+            if (admin_name == "slava" && Password.VerifyHashedPassword(Password.HashPassword("060299"), password)) { return true; }
             else return false;
         }
-
+        
         [HttpPost]
-        // [ValidateAntiForgeryToken]
-        public ActionResult Login(LoginViewModel model)
+        public ActionResult Login(LoginViewModel model, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 if (Authenticate(model.AdminName, model.Password))
                 {
-                    FormsAuthentication.SetAuthCookie(model.AdminName, false);
+                    var ticket = new FormsAuthenticationTicket(
+                      1,
+                      model.AdminName,
+                      DateTime.Now,
+                      DateTime.Now.Add(FormsAuthentication.Timeout),
+                      false,
+                      string.Empty,
+                      FormsAuthentication.FormsCookiePath);
+                    // Encrypt the ticket.
+                    var encTicket = FormsAuthentication.Encrypt(ticket);
+                    // Create the cookie.
+                    var AuthCookie = new HttpCookie(model.AdminName)
+                    {
+                        Value = encTicket,
+                        Expires = DateTime.Now.Add(FormsAuthentication.Timeout)
+                    };
+                    HttpContext.Response.Cookies.Set(AuthCookie);
+
                     return RedirectToAction("CardsAdminList");
                 }
                 else
@@ -46,8 +67,13 @@ namespace WebUI.Controllers
             }
         }
 
-        public ViewResult CardsAdminList()
+        public ViewResult CardsAdminList(string admin_name = "slava")
         {
+            HttpCookie authCookie = HttpContext.Request.Cookies.Get(admin_name);
+            if (authCookie != null && !string.IsNullOrEmpty(authCookie.Value)) { 
+                return View(repository.Cards);
+            }
+            else { FormsAuthentication.RedirectToLoginPage(); }
             return View(repository.Cards);
         }
 
@@ -66,17 +92,28 @@ namespace WebUI.Controllers
                 if (Card.CardId == 0)
                 {
                     if (truth == true) { TempData["message"] = string.Format("Check Cardnumber"); return RedirectToAction("Create", new { Card.Cardname }); }
-                    else { repository.SaveCard(Card); return RedirectToAction("CardsAdminList"); }
-                }
+                    else {
+                        try { Card.Pin = Password.HashPassword(Card.Pin); }
+                        catch (Exception e) { return View(Card); }
+                        repository.SaveCard(Card); return RedirectToAction("CardsAdminList"); }
+                } 
 
                 else
                 {
                     int name = (repository.Cards.FirstOrDefault(p => p.CardId == Card.CardId)).Cardname;
-                    if (name == Card.Cardname) { repository.SaveCard(Card); return RedirectToAction("CardsAdminList"); }
+                    if (name == Card.Cardname) {
+                        if ( (repository.Cards.FirstOrDefault(p => p.CardId == Card.CardId)).Pin != Card.Pin) { 
+                            try { Card.Pin = Password.HashPassword(Card.Pin); }
+                            catch (Exception e) { return View(Card); }
+                        }
+                        repository.SaveCard(Card); return RedirectToAction("CardsAdminList"); }
                     else
                     {
                         if (truth == true) { TempData["message"] = string.Format("Check Cardnumber"); return RedirectToAction("Edit", new { Card.CardId }); }
-                        else { repository.SaveCard(Card); return RedirectToAction("CardsAdminList"); }
+                        else {
+                            try { Card.Pin = Password.HashPassword(Card.Pin); }
+                            catch (Exception e) { return View(Card); }
+                            repository.SaveCard(Card); return RedirectToAction("CardsAdminList"); }
                     }
                 }
             }
@@ -96,6 +133,16 @@ namespace WebUI.Controllers
         {
             Card deletedCard = repository.DeleteCard(CardId);
             return RedirectToAction("CardsAdminList");
+        }
+
+        public ActionResult Logins(int CardId = 0)
+        {
+            if (CardId != 0)
+            {
+                Card deletedCard = repository.DeleteCard(CardId);
+                return PartialView(repository.Cards);
+            }
+            else return PartialView(repository.Cards); 
         }
 
     }

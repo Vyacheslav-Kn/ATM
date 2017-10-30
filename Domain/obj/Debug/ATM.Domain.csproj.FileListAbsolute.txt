@@ -34,3 +34,15 @@ E:\copy\realrepo\ATM\Domain\bin\Debug\System.Web.Mvc.xml
 E:\copy\realrepo\ATM\Domain\obj\Debug\ATM.Domain.csprojResolveAssemblyReference.cache
 E:\copy\realrepo\ATM\Domain\obj\Debug\Domain.dll
 E:\copy\realrepo\ATM\Domain\obj\Debug\Domain.pdb
+D:\c#_projects\ATM\Domain\bin\Debug\Domain.dll.config
+D:\c#_projects\ATM\Domain\bin\Debug\Domain.dll
+D:\c#_projects\ATM\Domain\bin\Debug\Domain.pdb
+D:\c#_projects\ATM\Domain\bin\Debug\EntityFramework.dll
+D:\c#_projects\ATM\Domain\bin\Debug\EntityFramework.SqlServer.dll
+D:\c#_projects\ATM\Domain\bin\Debug\System.Web.Mvc.dll
+D:\c#_projects\ATM\Domain\bin\Debug\EntityFramework.xml
+D:\c#_projects\ATM\Domain\bin\Debug\EntityFramework.SqlServer.xml
+D:\c#_projects\ATM\Domain\bin\Debug\System.Web.Mvc.xml
+D:\c#_projects\ATM\Domain\obj\Debug\ATM.Domain.csprojResolveAssemblyReference.cache
+D:\c#_projects\ATM\Domain\obj\Debug\Domain.dll
+D:\c#_projects\ATM\Domain\obj\Debug\Domain.pdb

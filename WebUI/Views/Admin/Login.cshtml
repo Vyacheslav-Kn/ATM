@@ -2,12 +2,18 @@
 @{
     ViewBag.Title = "Admin: Log In";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
-}
-<h1>Log In</h1>
-<p>Please log in to access the administrative area:</p>
-@using (Html.BeginForm("Login","Admin"))
+} 
+
+<h2>Log in to access the administrative area:</h2>
+@using (Html.BeginForm("Login", "Admin"))
 {
     @Html.ValidationSummary(true)
-    @Html.EditorForModel()
+    @Html.Label("Admin name ")
+    @Html.TextBoxFor(model => model.AdminName )
+    <p></p>
+    @Html.Label("Admin password ")
+    @Html.PasswordFor(model => model.Password)
+    <p></p>
     <p><input type="submit" value="Log in" /></p>
 }
+

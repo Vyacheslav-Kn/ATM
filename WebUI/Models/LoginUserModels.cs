@@ -8,9 +8,9 @@ namespace ATM.WebUI.Models
 {
     public class LoginUserModel
     {
-        [Required]
-        public int UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "Input card number")]
+        public string UserName { get; set; }
+        [Required(ErrorMessage = "Input card password")]
         [DataType(DataType.Password)]
         public string UserPin { get; set; }
     }

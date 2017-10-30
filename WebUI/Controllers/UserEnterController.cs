@@ -4,6 +4,8 @@ using System.Web.Security;
 using ATM.WebUI.Models;
 using ATM.Domain.Abstract;
 using ATM.Domain.Entities;
+using ATM.Domain.Password;
+using System;
 
 namespace WebUI.Controllers
 {
@@ -23,25 +25,26 @@ namespace WebUI.Controllers
         private bool Authenticate(int username, string userpin)
         {
             Card card = repository.Cards.FirstOrDefault(p => p.Cardname == username);
-            if (card.Cardname == username && card.Pin == userpin) { return true; }
+            try { Password.VerifyHashedPassword(card.Pin, userpin); }
+            catch { return false; }
+            if (card.Cardname == username && Password.VerifyHashedPassword(card.Pin, userpin)) { return true; }
             else return false;
         }
 
-        [HttpPost]
-        // [ValidateAntiForgeryToken]
+    [HttpPost]
         public ActionResult Login(LoginUserModel model)
         {
             if (ModelState.IsValid)
             {
-                if (Authenticate(model.UserName, model.UserPin))
+               int card_number = int.Parse(model.UserName); 
+               if (Authenticate(card_number, model.UserPin))
                 {
-                    FormsAuthentication.SetAuthCookie(model.UserName.ToString(), false);
-                    Card card1 = repository.Cards.FirstOrDefault(p => p.Cardname == model.UserName);
+                    Card card1 = repository.Cards.FirstOrDefault(p => p.Cardname == card_number);
                     return View("Nav2_success", card1);
                 }
                 else
                 {
-                    return Redirect(Url.Action("Login", "UserEnter"));
+                    return View();
                 }
             }
             else

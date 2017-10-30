@@ -3,11 +3,17 @@
     ViewBag.Title = "Log In";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h1>Log In</h1>
-<p>Please log in to access the client area:</p>
-@using (Html.BeginForm("Login", "UserEnter"))
+
+<h2>Please, input neccessary fields: </h2>
+
+@using (Html.BeginForm("Login"))
 {
     @Html.ValidationSummary(true)
-    @Html.EditorForModel()
+    @Html.Label("Card number ")
+    @Html.TextBoxFor(model => model.UserName )
+    <p></p>
+    @Html.Label("Card password ")
+    @Html.PasswordFor(model => model.UserPin )
+    <p></p>
     <p><input type="submit" value="Log in" /></p>
 }

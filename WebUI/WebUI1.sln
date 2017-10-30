@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.0.0
+MinimumVisualStudioVersion = 10.0.0.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.WebUI", "ATM.WebUI.csproj", "{B8DDA71A-A0CE-42E4-A6C8-6B2D8C09FB41}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ATM.Domain", "..\Domain\ATM.Domain.csproj", "{A315D64B-B495-4346-A7E7-BB110B8BD357}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B8DDA71A-A0CE-42E4-A6C8-6B2D8C09FB41}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8DDA71A-A0CE-42E4-A6C8-6B2D8C09FB41}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8DDA71A-A0CE-42E4-A6C8-6B2D8C09FB41}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8DDA71A-A0CE-42E4-A6C8-6B2D8C09FB41}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A315D64B-B495-4346-A7E7-BB110B8BD357}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A315D64B-B495-4346-A7E7-BB110B8BD357}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A315D64B-B495-4346-A7E7-BB110B8BD357}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A315D64B-B495-4346-A7E7-BB110B8BD357}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

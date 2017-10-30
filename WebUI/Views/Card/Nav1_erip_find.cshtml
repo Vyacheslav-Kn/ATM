@@ -7,16 +7,17 @@
 <h2>Please, input neccessary fields: </h2>
 @using (Html.BeginForm("Nav1_erip", "Card"))
 {
-@Html.Label("Organization erip number: ")
+@Html.ValidationSummary(true)
+@Html.Label("Organization erip number ")
 @Html.TextBoxFor(model => model.Organization_erip_number)
 <p></p>
-@Html.Label("Sender's card number: ")
+@Html.Label("Sender's card number ")
 @Html.TextBoxFor(model => model.Sender_cart_number)
 <p></p>
-@Html.Label("Sender's card password: ")
+@Html.Label("Sender's card password ")
 @Html.PasswordFor(model => model.Sender_cart_password)
 <p></p>
-@Html.Label("Cash: ")
+@Html.Label("Cash ")
 @Html.TextBoxFor(model => model.Cash)
 <p></p>
 <p><input type="submit" value="Send" /></p>

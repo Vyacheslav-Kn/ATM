@@ -3,36 +3,45 @@
     ViewBag.Title = "Services";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+<div style="width:200px; height:75px; background-color:white">
 <ul>
     <li>
-        Mobile connection
+        <div style="width:400px; heigth:50px; background-color:grey">Mobile connection
         <ul>
-            <li>@Html.ActionLink("Velcom (00123)", "Nav1_eripmodel", "Card", new { org_erip = "00123" }, null)</li>
-            <li>@Html.ActionLink("Life (00234)", "Nav1_eripmodel", "Card", new { org_erip = "00234" }, null)</li>
-            <li>@Html.ActionLink("MTS (00345)", "Nav1_eripmodel", "Card", new { org_erip = "00345" }, null)</li>
+            <div style="width:100px; height:50px; background-color:grey; float:left; margin:5px">@Html.ActionLink("Velcom (00123)", "Nav1_eripmodel", "Card", new { org_erip = "00123" }, null)</div>
+            <div style="width:100px; height:50px; background-color:grey; float:left; margin:5px">@Html.ActionLink("Life (00234)", "Nav1_eripmodel", "Card", new { org_erip = "00234" }, null)</div>
+            <div style="width:100px; height:50px; background-color:grey; float:left; margin:5px">@Html.ActionLink("MTS (00345)", "Nav1_eripmodel", "Card", new { org_erip = "00345" }, null)</div>
         </ul>
+        </div>
     </li>
 </ul>
+</div>
 
-<ul>
-    <li>
-        Education
-        <ul>
-            <li>@Html.ActionLink("RT_rigz (00456)", "Nav1_eripmodel", "Card", new { org_erip = "00456" }, null)</li>
-            <li>@Html.ActionLink("CT_rigz (00567)", "Nav1_eripmodel", "Card", new { org_erip = "00567" }, null)</li>
-        </ul>
-    </li>
-</ul>
+<div style="width:200px; height:75px; background-color:white">
+    <ul>
+        <li>
+            <div style="width:400px; heigth:50px; background-color:grey">Education
+                <ul>
+                    <div style="width:100px; height:50px; background-color:grey; float:left; margin:5px"> @Html.ActionLink("RT_rigz (00456)", "Nav1_eripmodel", "Card", new { org_erip = "00456" }, null)</div>
+                    <div style="width:100px; height:50px; background-color:grey; float:left; margin:5px"> @Html.ActionLink("CT_rigz (00567)", "Nav1_eripmodel", "Card", new { org_erip = "00567" }, null)</div>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
 
-<ul>
-    <li>
-        Enternet and television
-        <ul>
-            <li>@Html.ActionLink("Atlant telecom (00678)", "Nav1_eripmodel", "Card", new { org_erip = "00678" }, null)</li>
-            <li>@Html.ActionLink("Voka (00789)", "Nav1_eripmodel", "Card", new { org_erip = "00789" }, null)</li>
-        </ul>
-    </li>
-</ul>
-<p></p>
-@Html.ActionLink("Choosing new Erip operation", "Nav1_erip_find", "Card")
+<div style="width:200px; height:75px; background-color:white">
+    <ul>
+        <li>
+            <div style="width:400px; heigth:50px; background-color:grey">
+                Enternet and television
+                <ul>
+                    <div style="width:100px; height:50px; background-color:grey; float:left; margin:5px">@Html.ActionLink("Atlant telecom (00678)", "Nav1_eripmodel", "Card", new { org_erip = "00678" }, null)</div>
+                    <div style="width:100px; height:50px; background-color:grey; float:left; margin:5px"> @Html.ActionLink("Voka (00789)", "Nav1_eripmodel", "Card", new { org_erip = "00789" }, null)</div>
+                </ul>
+            </div>
+        </li>
+    </ul>
+</div>
+    <p></p>
+    @Html.ActionLink("Choosing new Erip operation", "Nav1_erip_find", "Card")

@@ -59,6 +59,7 @@
     <Compile Include="Concrete\EFEripRepository.cs" />
     <Compile Include="Entities\Card.cs" />
     <Compile Include="Entities\Erip.cs" />
+    <Compile Include="Password\password hash.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

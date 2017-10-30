@@ -5,9 +5,11 @@ using System.Web.Mvc;
 using ATM.Domain.Abstract;
 using ATM.Domain.Entities;
 using WebUI.Models;
+using ATM.Domain.Password;
 
 namespace WebUI.Controllers
 {
+    
     public class CardController : Controller
     {
         private ICardRepository repository; private IEripRepository eriprepository;
@@ -43,6 +45,8 @@ namespace WebUI.Controllers
         [HttpPost]
         public ViewResult Nav1_erip(EripModel model)
         {
+            if (!ModelState.IsValid) { return View("Nav1_erip_find"); } 
+
             Erip check1 = eriprepository.Erips.FirstOrDefault(p => p.Eripnumber == model.Organization_erip_number);
             if (check1 == null)
             {
@@ -51,7 +55,7 @@ namespace WebUI.Controllers
             }
             int n = Convert.ToInt32(model.Sender_cart_number);
             Card check2 = repository.Cards.FirstOrDefault(p => p.Cardname == n);
-            if (check2.Pin == model.Sender_cart_password && check2.Cash >= model.Cash)
+            if (Password.VerifyHashedPassword(check2.Pin, model.Sender_cart_password) && check2.Cash >= model.Cash) 
             {
                 check2.Cash = check2.Cash - model.Cash;
 
@@ -98,9 +102,10 @@ namespace WebUI.Controllers
                 }
                 repository.SaveCard(check2); TempData["result"] = "Operation has been performed!";
                 return View("List");
-            }
-            else { return View("Nav1_erip_find"); }
+               }
+            else { return View("List"); }
         }
+    
 
         public ActionResult Nav2()
         {
@@ -163,9 +168,17 @@ namespace WebUI.Controllers
         [HttpPost]
         public ViewResult Nav3(Rollover trans)
         {
-            Card card1 = repository.Cards.FirstOrDefault(p => p.Cardname == trans.SenderName); Rollover t = trans;
-            Card card2 = repository.Cards.FirstOrDefault(p => p.Cardname == trans.ReceiverName);
-            if (card1.Pin == trans.UserPin && card1.Cash >= trans.Cash)
+            Card card1, card2; Rollover t;
+            try
+            {
+                card1 = repository.Cards.FirstOrDefault(p => p.Cardname == trans.SenderName);  t = trans;
+                card2 = repository.Cards.FirstOrDefault(p => p.Cardname == trans.ReceiverName);
+                if(t.Cash < 0 || card1 == null || card2 == null ) { return View(); }
+            }
+            catch { return View(); }
+            try { Password.VerifyHashedPassword(card1.Pin, trans.UserPin); }
+            catch { return View(); }
+            if (Password.VerifyHashedPassword(card1.Pin, trans.UserPin) && card1.Cash >= trans.Cash)
             {
                 card2.Cash = card2.Cash + trans.Cash; queue_check(card2, t);
                 card1.Cash = card1.Cash - trans.Cash; queue_check(card1, t);

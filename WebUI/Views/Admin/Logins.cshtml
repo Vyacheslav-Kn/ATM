@@ -1,0 +1,34 @@
+﻿@model IEnumerable<ATM.Domain.Entities.Card>
+
+@{
+    AjaxOptions options = new AjaxOptions
+    {
+        UpdateTargetId = "check",
+        Url = Url.Action("Logins")
+    };
+}
+
+<table class="Grid" id="check">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>CardName</th>
+            <th>Cash</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.CardId</td>
+            <td>@Html.ActionLink(@item.Cardname.ToString(), "Edit", new { item.CardId })</td>
+            <td>@item.Cash.ToString() rubles</td>
+            <td>
+                @using (Ajax.BeginForm("Logins", new AjaxOptions { UpdateTargetId = "check", InsertionMode = InsertionMode.Replace, Url = Url.Action("Logins", "Admin", new { CardId = item.CardId }, null) }))
+                {
+                    <input type="submit" value="Delete" />
+                }
+            </td>
+        </tr>
+    }
+</table>

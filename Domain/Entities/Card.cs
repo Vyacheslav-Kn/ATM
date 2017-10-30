@@ -8,16 +8,16 @@ namespace ATM.Domain.Entities
     { 
         [HiddenInput(DisplayValue = false)]
         public int CardId { get; set; } // уник-е значение в рамках SQl-таблицы
-        [Required(ErrorMessage = "Введите номер карты")]
+        [Required(ErrorMessage = "Input card number")]
         public int Cardname { get; set; } // уник-ый номер карты
-        [Required(ErrorMessage = "Введите дату активации карты")]
+        [Required(ErrorMessage = "Input card activation date")]
         public DateTime Start { get; set; }
-        [Required(ErrorMessage = "Введите дату конца срока карты")]
+        [Required(ErrorMessage = "Input card end date")]
         public DateTime Finish { get; set; }
-        [Required(ErrorMessage = "Введите сумму средств на карте")]
+        [Required(ErrorMessage = "Input card cash")]
         public decimal Cash { get; set; }
         public string Queue { get; set; }
-        [Required(ErrorMessage = "Введите пароль карты")]
+        [Required(ErrorMessage = "Input card password")]
         public string Pin { get; set; }
     }
 }

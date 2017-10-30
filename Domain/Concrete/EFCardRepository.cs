@@ -14,8 +14,9 @@ namespace ATM.Domain.Concrete
 
         public void SaveCard(Card Card)
         {
-            if (Card.CardId == 0)
+            if (Card.CardId == 0)   
             {
+                Card.Pin = Password.Password.HashPassword(Card.Pin);
                 context.Cards.Add(Card);
             }
             else
@@ -27,7 +28,7 @@ namespace ATM.Domain.Concrete
                     dbEntry.Start = Card.Start;
                     dbEntry.Finish = Card.Finish;
                     dbEntry.Cash = Card.Cash;
-                    dbEntry.Queue = Card.Queue; 
+                    dbEntry.Queue = Card.Queue;
                     dbEntry.Pin = Card.Pin;
                 }
             }

@@ -2,10 +2,30 @@
 @{
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
-<h1>Edit @Model.Cardname</h1>
-@using (Html.BeginForm("Edit","Admin"))
+<h1>Edit card №@Model.Cardname</h1>
+@using (Html.BeginForm("Edit", "Admin"))
 {
-    @Html.EditorForModel()
+    @Html.Label("Card ID:  ")
+    @Html.TextBoxFor(model => model.CardId)
+    <p></p>
+    @Html.Label("Card number:  ")
+    @Html.TextBoxFor(model => model.Cardname )
+    <p></p> 
+    @Html.Label("Card activation date:  ")
+    @Html.TextBoxFor(model => model.Start )
+    <p></p>
+    @Html.Label("Card end date:  ")
+    @Html.TextBoxFor(model => model.Finish )
+    <p></p>
+    @Html.Label("Card cash:  ")
+    @Html.TextBoxFor(model => model.Cash )
+    <p></p>
+    @Html.Label("Card password:  ")
+    @Html.TextBoxFor(model => model.Pin )
+    <p></p>
+    @Html.Label("Card story:  ")
+    @Html.TextBoxFor(model => model.Queue )
+    <p></p>
     <input type="submit" value="Save" />
     @Html.ActionLink("Cancel and return to List", "CardsAdminList")
 }
